@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
+﻿using System.Diagnostics;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+using App2._0._0.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
-using App2._0._0.Models;
 
 namespace App2._0._0.Controllers
 {
@@ -20,11 +15,11 @@ namespace App2._0._0.Controllers
 
         public IActionResult About()
         {
-            var sb = new StringBuilder();
-            sb.AppendLine(typeof(object).GetTypeInfo().Assembly.Location);
-            sb.AppendLine(typeof(Controller).GetTypeInfo().Assembly.Location);
-            sb.AppendLine(typeof(IServiceCollection).GetTypeInfo().Assembly.Location);
-            ViewData["Message"] = sb.ToString();
+            var assemblyInfo = $@"object assembly: {typeof(object).GetTypeInfo().Assembly.Location}
+Controller assembly: {typeof(Controller).GetTypeInfo().Assembly.Location}
+IServiceCollection assembly: {typeof(IServiceCollection).GetTypeInfo().Assembly.Location}";
+
+            ViewData["Message"] = assemblyInfo;
 
             return View();
         }
